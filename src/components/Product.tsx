@@ -1,3 +1,5 @@
+import { formatMoney } from "@/lib/pricing";
+
 type ProductProps = {
   name: string;
   description: string;
@@ -18,7 +20,7 @@ const Product = ({ name, description, priceCents }: ProductProps) => {
             <h2 className="text-2xl lg:text-[32px] font-bold">{name}</h2>
             <p className="text-muted">{description}</p>
           </div>
-          <div className="text-xl lg:text-2xl">${priceCents}</div>
+          <div className="text-xl lg:text-2xl">{formatMoney(priceCents)}</div>
         </div>
         <button
           type="button"
