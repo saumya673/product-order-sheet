@@ -36,11 +36,11 @@ The same schema can be used on the client to validate the response, and the Type
 
 Copy `.env.local.example` to `.env.local` and set `PRODUCT_API_MODE`:
 
-| Value   | Behaviour                              |
-| ------- | -------------------------------------- |
-| _empty_ | Normal response                        |
-| `slow`  | Responds after a 2 second delay        |
-| `error` | Responds with `500` and an error body  |
+| Value   | Behaviour                             |
+| ------- | ------------------------------------- |
+| _empty_ | Normal response                       |
+| `slow`  | Responds after a 2 second delay       |
+| `error` | Responds with `500` and an error body |
 
 Restart `pnpm dev` after changing it.
 
@@ -72,16 +72,26 @@ src/
   schema/       Zod schemas and inferred types for API responses
 ```
 
+## Data fetching
+
+The product is fetched **on the server**. `src/app/page.tsx` is a server component that requests `/api/product` and validates the response with the Zod schema. While it loads, `src/app/loading.tsx` shows `Loading product…`. If the request fails, `src/app/error.tsx` shows `Could not load the product` and a **Try again** button that requests it again.
+
+## Layout between 768px and 1023px
+
+From 768px up the page uses the desktop layout: image placeholder beside the details, the **Add to order** button sized to its text, and the dialog as a centred modal (max 480px wide). At tablet width there is enough room for two columns, and stacking them left a very tall image with the details pushed below the fold.
+
 ## Time spent
 
 _TODO_
 
-## Use of AI assistance
+## AI tools
 
-Parts written by a coding assistant (Claude Code):
+I used **Claude Code** (Anthropic) as a coding assistant. It wrote these parts, which I reviewed:
 
 - Husky pre-commit hook setup
 - Zod schema for the product API response (`src/schema/product.ts`) and its use in the route handler
+- Money formatting (`formatMoney` in `src/lib/pricing.ts`)
+- The `AddToOrder` component and the `Dialog` open/close logic and responsive styling
 - This README
 
 _TODO: keep this list up to date._
