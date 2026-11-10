@@ -1,10 +1,10 @@
 type ProductProps = {
   name: string;
   description: string;
-  price: number;
+  priceCents: number;
 };
 
-const Product = ({ name, description, price }: ProductProps) => {
+const Product = ({ name, description, priceCents }: ProductProps) => {
   return (
     <div className="m-4 p-8 flex flex-col items-start border">
       <div className="flex justify-between gap-4 w-full">
@@ -12,7 +12,7 @@ const Product = ({ name, description, price }: ProductProps) => {
           <h2 className="text-3xl font-bold">{name}</h2>
           <p className="text-muted">{description}</p>
         </div>
-        <div>${price}</div>
+        <div>${priceCents}</div>
       </div>
       <button
         type="button"

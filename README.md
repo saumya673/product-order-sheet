@@ -1,6 +1,6 @@
 # Product order sheet
 
-A single product page for the **Linden shelf** with an order sheet dialog. Built with Next.js (App Router), React, TypeScript and Tailwind CSS. Prices live in the app; there is no backend.
+A single product page for the **Linden shelf** with an order sheet dialog. Built with Next.js (App Router), React, TypeScript and Tailwind CSS. Product data and prices are served by a mock API route inside the app; there is no external backend.
 
 ## Requirements
 
@@ -22,6 +22,27 @@ pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
+
+## Product API
+
+`GET /api/product` returns the product as JSON. The response is validated against a [Zod](https://zod.dev) schema in `src/schema/product.ts` before it is sent:
+
+- `200`: the product (name, description, price, fulfillment options and extras). All prices are integer cents.
+- `500`: `{ "error": string }`. Returned when the API is in `error` mode, or when the product data fails validation (the details are logged on the server).
+
+The same schema can be used on the client to validate the response, and the TypeScript types (`Product`, `FulfillmentOption`, `Extra`, …) are inferred from it.
+
+### Simulating slow or failing responses
+
+Copy `.env.local.example` to `.env.local` and set `PRODUCT_API_MODE`:
+
+| Value   | Behaviour                              |
+| ------- | -------------------------------------- |
+| _empty_ | Normal response                        |
+| `slow`  | Responds after a 2 second delay        |
+| `error` | Responds with `500` and an error body  |
+
+Restart `pnpm dev` after changing it.
 
 ## Test
 
@@ -45,8 +66,10 @@ A [husky](https://typicode.github.io/husky/) pre-commit hook runs, in order: `bi
 ```
 src/
   app/          Next.js routes, layout and global styles
+    api/        Route handlers (mock product API)
   components/   UI components
   lib/          Product data and shared logic
+  schema/       Zod schemas and inferred types for API responses
 ```
 
 ## Time spent
@@ -58,6 +81,7 @@ _TODO_
 Parts written by a coding assistant (Claude Code):
 
 - Husky pre-commit hook setup
+- Zod schema for the product API response (`src/schema/product.ts`) and its use in the route handler
 - This README
 
 _TODO: keep this list up to date._
