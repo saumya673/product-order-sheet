@@ -1,5 +1,12 @@
-import Image from "next/image";
+import Product from "@/components/Product";
+import { productData } from "@/components/Product";
 
 export default function Home() {
-  return <div>Product Order Sheet</div>;
+  return (
+    <>
+      <main className="px-4 py-16 sm:py-24">
+        <Product {...productData} />
+      </main>
+    </>
+  );
 }
