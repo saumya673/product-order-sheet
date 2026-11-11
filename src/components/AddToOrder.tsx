@@ -20,6 +20,11 @@ const AddToOrder = ({ product }: AddToOrderProps) => {
     dialogRef.current?.showModal();
   };
 
+  const backToProduct = () => {
+    dialogRef.current?.close();
+    setOrder(null);
+  };
+
   return (
     <>
       <button
@@ -31,7 +36,11 @@ const AddToOrder = ({ product }: AddToOrderProps) => {
       </button>
       <Dialog ref={dialogRef} title="Your order">
         {order ? (
-          <OrderConfirmation />
+          <OrderConfirmation
+            product={product}
+            order={order}
+            onBack={backToProduct}
+          />
         ) : (
           <OrderForm product={product} onSubmit={setOrder} />
         )}
