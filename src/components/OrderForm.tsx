@@ -16,6 +16,7 @@ const optionRow =
   "has-checked:border-primary has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-primary " +
   "has-disabled:cursor-not-allowed has-disabled:opacity-50";
 
+// {"assembly": false, "hardware": false}
 const noExtras = (product: Product) =>
   Object.fromEntries(
     product.extras.map((extra) => [extra.code, false]),
@@ -57,11 +58,13 @@ const OrderForm = ({ product, onSubmit }: OrderFormProps) => {
       onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col gap-6"
     >
+      {/* product name and price display */}
       <div className="flex justify-between gap-4">
         <span>{product.name}</span>
         <span>{formatMoney(product.priceCents)}</span>
       </div>
 
+      {/* fulfillment - pickup and delivery */}
       <fieldset className="flex flex-col gap-2">
         <legend className="mb-2 font-semibold">Fulfillment</legend>
         {product.fulfillment.map((option) => (
@@ -91,6 +94,7 @@ const OrderForm = ({ product, onSubmit }: OrderFormProps) => {
         )}
       </fieldset>
 
+      {/* extras - assembly and hardware */}
       <fieldset className="flex flex-col gap-2">
         <legend className="mb-2 font-semibold">Extras</legend>
         {product.extras.map((extra) => {

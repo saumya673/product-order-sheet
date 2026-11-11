@@ -127,6 +127,7 @@ I used **Claude Code** (Anthropic) as a coding assistant. It wrote these parts, 
 - Money formatting (`formatMoney` in `src/lib/pricing.ts`)
 - The `AddToOrder` component and the `Dialog` open/close logic and responsive styling
 - The order form (`src/components/OrderForm.tsx`), the order schema (`src/schema/order.ts`) and the total calculation (`calculateTotalCents`)
+- The **Total** test (`src/components/OrderForm.test.tsx`)
 - This README
 
 _TODO: keep this list up to date._
