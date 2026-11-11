@@ -3,8 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Product Order Sheet",
-  description:
-    "An app displaying a product page with an order sheet. The product is a shelf called as 'Linden Shelf' ",
+  description: "A product page for the Linden shelf with an order sheet.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

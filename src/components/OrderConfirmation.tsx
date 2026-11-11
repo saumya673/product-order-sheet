@@ -8,7 +8,7 @@ type OrderConfirmationProps = {
   onBack: () => void;
 };
 
-export const OrderConfirmation = ({
+const OrderConfirmation = ({
   product,
   order,
   onBack,
@@ -50,3 +50,5 @@ export const OrderConfirmation = ({
     </div>
   );
 };
+
+export default OrderConfirmation;

@@ -15,7 +15,7 @@ const Product = (product: ProductData) => {
       <div className="flex flex-col items-start md:flex-1">
         <div className="flex justify-between gap-4 w-full">
           <div>
-            <h2 className="text-2xl md:text-[32px] font-bold">{name}</h2>
+            <h1 className="text-2xl md:text-[32px] font-bold">{name}</h1>
             <p className="text-muted">{description}</p>
           </div>
           <div className="text-xl md:text-2xl">{formatMoney(priceCents)}</div>

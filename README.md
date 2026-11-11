@@ -30,7 +30,7 @@ Open [http://localhost:3000](http://localhost:3000).
 `GET /api/product` returns the product as JSON. The response is validated against a [Zod](https://zod.dev) schema in `src/schema/product.ts` before it is sent:
 
 - `200`: the product (name, description, price, fulfillment options and extras). All prices are integer cents.
-- `500`: `{ "error": string }`. Returned when the API is in `error` mode, or when the product data fails validation (the details are logged on the server).
+- `500`: `{ "error": string }`. Returned when the API is in `error` mode, or when the product data fails validation.
 
 The same schema can be used on the client to validate the response, and the TypeScript types (`Product`, `FulfillmentOption`, `Extra`, …) are inferred from it.
 
@@ -117,6 +117,10 @@ The dialog and form use native elements (`<dialog>`, `<button>`, radio and check
 - When the dialog closes, the browser returns focus to the **Add to order** button.
 
 Checkboxes toggle with Space, the standard key for checkboxes. I chose not to remap Enter to toggle them. Doing so would make them behave differently from checkboxes everywhere else and would clash with Enter submitting the form.
+
+## Light and dark mode
+
+The app follows the system colour scheme (`prefers-color-scheme`). Light mode uses the colours from the assignment spec (`#1F4D3A` primary buttons, `#B42318` error text); dark mode uses its own palette. **To check the page against the spec, switch your system to light mode.**
 
 ## Layout between 768px and 1023px
 
