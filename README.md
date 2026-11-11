@@ -9,21 +9,40 @@ A single product page for the **Linden shelf** with an order sheet dialog. Built
 - Node.js **v24.20.0**
 - pnpm **v12.18.0**
 
-## Install
+## Getting started
 
-```bash
-pnpm install
-```
+1. Clone the repo and enter it:
 
-This also installs the git pre-commit hook (via the `prepare` script).
+   ```bash
+   git clone https://github.com/saumya673/product-order-sheet.git
+   cd product-order-sheet
+   ```
 
-## Run
+2. Use Node.js v24 and enable pnpm (it ships with Node through Corepack):
 
-```bash
-pnpm dev
-```
+   ```bash
+   corepack enable
+   ```
 
-Open [http://localhost:3000](http://localhost:3000).
+3. Install dependencies. This also installs the git pre-commit hook (via the `prepare` script).
+
+   ```bash
+   pnpm install
+   ```
+
+4. (Optional) Create `.env.local` to simulate a slow or failing API (see [Simulating slow or failing responses](#simulating-slow-or-failing-responses)). The app works without it.
+
+   ```bash
+   cp .env.local.example .env.local
+   ```
+
+5. Start the dev server and open [http://localhost:3000](http://localhost:3000):
+
+   ```bash
+   pnpm dev
+   ```
+
+For a production build, run `pnpm build && pnpm start`.
 
 ## Product API
 
