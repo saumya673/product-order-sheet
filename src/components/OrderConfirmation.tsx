@@ -1,6 +1,6 @@
 import { calculateTotalCents, formatMoney } from "@/lib/pricing";
-import { Order } from "@/schema/order";
-import { Product } from "@/schema/product";
+import type { Order } from "@/schema/order";
+import type { Product } from "@/schema/product";
 
 type OrderConfirmationProps = {
   product: Product;

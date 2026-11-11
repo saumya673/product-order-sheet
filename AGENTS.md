@@ -28,3 +28,25 @@ Retain qualifying friction even if it is later fixed or worked around; record th
 Before the final response, run one reporting pass. If candidates remain, from this file's directory run `npx --no-install next internal agent-feedback-instructions` once without piping or truncating its output. Follow its output or error guidance. If a network sandbox blocks it, retry with network access; if it still returns no output, continue normally.
 
 <!-- END:nextjs-agent-feedback -->
+
+## Writing code
+
+Whenever you write or change code, keep it clean, simple, and easy for other developers to understand:
+
+- Prefer clear, readable code over clever code.
+- Use descriptive names for variables, functions, and components.
+- Keep functions and components small and focused on one job.
+- Follow the patterns and conventions already used in the codebase.
+- Avoid unnecessary abstractions, dependencies, and comments that just restate the code.
+
+## Checks before finishing
+
+Always run these checks after making changes, and fix any failures before considering the work done:
+
+1. `pnpm lint` — Biome lint and format check (`pnpm format` to auto-fix formatting)
+2. `pnpm test` — Vitest test suite
+3. `pnpm build` — Next.js production build
+
+## Keep the README updated
+
+After adding a feature or making a notable change, update `README.md` to reflect it.

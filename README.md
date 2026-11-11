@@ -2,6 +2,8 @@
 
 A single product page for the **Linden shelf** with an order sheet dialog. Built with Next.js (App Router), React, TypeScript, Tailwind CSS, react-hook-form and Zod. Product data and prices are served by a mock API route inside the app; there is no external backend.
 
+**Live:** [https://product-order-sheet.vercel.app/](https://product-order-sheet.vercel.app/)
+
 ## Requirements
 
 - Node.js **v24.20.0**
@@ -50,7 +52,13 @@ Restart `pnpm dev` after changing it.
 pnpm test
 ```
 
-Tests use [Vitest](https://vitest.dev) with [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) in a jsdom environment.
+Tests use [Vitest](https://vitest.dev) with [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) in a jsdom environment. They render `AddToOrder` with the product data passed in, so no server is needed. jsdom does not implement `<dialog>`'s `showModal()` and `close()`, so `vitest.setup.ts` adds minimal versions.
+
+The tests in `src/components/AddToOrder.test.tsx` cover:
+
+1. **Total.** Delivery + Assembly + Hardware kit shows `$275`.
+2. **Pickup clears Assembly.** Choosing Pickup after Delivery + Assembly unchecks and disables Assembly, and the total goes back to `$180`. The confirmation for Pickup + Hardware kit does not list Assembly.
+3. **Missing fulfillment.** Submitting with nothing chosen shows **Choose pickup or delivery** and keeps the form open.
 
 ## Lint and format
 
@@ -116,7 +124,7 @@ From 768px up the page uses the desktop layout: image placeholder beside the det
 
 ## Time spent
 
-_TODO_
+About 4 hours.
 
 ## AI tools
 
@@ -127,7 +135,7 @@ I used **Claude Code** (Anthropic) as a coding assistant. It wrote these parts, 
 - Money formatting (`formatMoney` in `src/lib/pricing.ts`)
 - The `AddToOrder` component and the `Dialog` open/close logic and responsive styling
 - The order form (`src/components/OrderForm.tsx`), the order schema (`src/schema/order.ts`) and the total calculation (`calculateTotalCents`)
-- The **Total** test (`src/components/OrderForm.test.tsx`)
+- The tests (`src/components/AddToOrder.test.tsx`) and the `<dialog>` stub in `vitest.setup.ts`
 - This README
 
-_TODO: keep this list up to date._
+**What I changed:** I asked it to build the UI to the design spec. Instead of keeping it simple, it produced a more decorative product component than the spec asked for. I threw that away and wrote `src/components/Product.tsx` myself, following the spec's layout and sizes.

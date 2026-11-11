@@ -6,7 +6,7 @@ const Product = (product: ProductData) => {
   const { name, description, priceCents } = product;
 
   return (
-    <div className="p-8 flex flex-col md:flex-row gap-6 border border-border">
+    <div className="flex flex-col md:flex-row gap-6">
       <div
         role="img"
         aria-label={name}
