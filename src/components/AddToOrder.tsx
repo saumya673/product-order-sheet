@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import Dialog from "@/components/Dialog";
+import OrderForm from "@/components/OrderForm";
 import type { Product } from "@/schema/product";
 
 type AddToOrderProps = {
@@ -21,7 +22,8 @@ const AddToOrder = ({ product }: AddToOrderProps) => {
         Add to order
       </button>
       <Dialog ref={dialogRef} title="Your order">
-        <p className="text-muted">{product.name}</p>
+        {/* TODO: swap the form for the confirmation view on submit */}
+        <OrderForm product={product} onSubmit={() => {}} />
       </Dialog>
     </>
   );
